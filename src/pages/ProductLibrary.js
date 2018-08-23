@@ -5,11 +5,9 @@ import { Link } from 'react-router-dom'
 import Category from '../components/main/Category';
 import Product from '../components/main/Product';
 
-
 class ProductLibrary extends Component {
     render() {
         const paramsHere = this.props;
-        const urlHere = paramsHere.match.url;
         return (
             <div>
                 Product Library

@@ -4,9 +4,6 @@ import Header from './components/header/Header';
 import './App.css';
 
 class App extends Component {
-  constructor() {
-    super();
-  }
 
   render() {
     const {location} = this.props;
