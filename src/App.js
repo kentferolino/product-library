@@ -1,18 +1,25 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+
+import Header from './component/Header';
 import './App.css';
 
 class App extends Component {
+  constructor() {
+    super();
+  }
+
   render() {
+    const constainerStyle = { paddingTop:"100px", minHeight: "100%", height: "100%" };
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div className="content-wrapper">
+        <Header location={location} />
+        <div className="container" style={constainerStyle}>
+          <div className="row">
+            <div className="col-lg-12">
+              {this.props.children}
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
