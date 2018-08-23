@@ -3,7 +3,7 @@ class Category extends Component {
     render() {
         return (
             <div>
-                Category 
+                Category Page
             </div>
         );
     }

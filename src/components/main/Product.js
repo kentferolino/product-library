@@ -20,7 +20,7 @@ class Product extends Component {
         const mappedProducts = products.map(product => <li key={product.id}> {product.name} {product.description} </li>)
         return (
             <div>
-                Products
+                Products Page
                 <ProductTable products={products} deleteProduct={this.handleDeleteProduct.bind(this)} />
             </div>
         );
