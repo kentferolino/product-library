@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-
 import Header from './components/header/Header';
 import './App.css';
 
 class App extends Component {
-
   render() {
-    const {location} = this.props;
+    const { location } = this.props;
     const constainerStyle = { minHeight: "100%", height: "100%" };
     return (
       <div className="content-wrapper">
@@ -22,5 +20,4 @@ class App extends Component {
     );
   }
 }
-
 export default App;
