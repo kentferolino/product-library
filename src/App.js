@@ -10,7 +10,7 @@ class App extends Component {
 
   render() {
     const {location} = this.props;
-    const constainerStyle = { paddingTop:"100px", minHeight: "100%", height: "100%" };
+    const constainerStyle = { minHeight: "100%", height: "100%" };
     return (
       <div className="content-wrapper">
         <Header location={location} />

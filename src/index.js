@@ -17,11 +17,11 @@ const Root = () => (
         <App>
             <Switch>
                 <Route exact path='/' component={Home} />
-                <Route path='/product' component={ProductLibrary} />
+                <Route path='/library' component={ProductLibrary} />
             </Switch>
         </App>
     </BrowserRouter>
 );
 
-ReactDOM.render(<App />, root);
+ReactDOM.render(<Root />, root);
 registerServiceWorker();
