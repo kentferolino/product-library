@@ -5,7 +5,8 @@ import { Provider } from "react-redux";
 
 import './includes/bootstrap/css/bootstrap.min.css';
 import './index.css';
-import './includes/react-bootstrap-table/css/react-bootstrap-table.css';
+import './includes/react-table/react-table.css'
+import './includes/font-awesome/css/font-awesome.min.css'
 import App from './App';
 import Home from './pages/Home';
 import ProductLibrary from './pages/ProductLibrary';

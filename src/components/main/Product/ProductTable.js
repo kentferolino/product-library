@@ -1,37 +1,56 @@
 import React, { Component } from 'react';
-import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
-
+import ReactTable from "react-table";
 
 class ProductTable extends Component {
 
+    deleteProduct = id => {
+        this.props.deleteProduct(id);
+    }
+
     render() {
-        
+
         const products = this.props.products;
-        const options = {
-            page:1,
-            prePage:  '⟵',
-            nextPage: '⟶',
-            firstPage: '⟸',
-            lastPage: '⟹',
-            paginationShowsTotal: products.length
-          }
+        const columns = [
+            {
+                Header: '#',
+                accessor: 'id',
+                headerClassName: 'text-left bg-success',
+                Cell: props => <span className='number'>{props.value}</span>,
+                width: 55,
+            },
+            {
+                Header: 'Name',
+                accessor: 'name',
+                headerClassName: 'text-left bg-success',
+                width: 300,
+            },
+            {
+                Header: 'Description',
+                accessor: 'description',
+                headerClassName: 'text-left bg-success',
+                width: 400,
+            },
+            {
+                Header: 'Category',
+                accessor: 'category_name',
+                headerClassName: 'text-left bg-success',
+                width: 250,
+            },
+            {
+                Header: 'Action',
+                accessor: 'id',
+                headerClassName: 'text-left bg-success',
+                Cell: props => <button onClick={this.deleteProduct.bind(this,props.value)}><i className="fa fa-trash text-danger"></i></button>,
+                width: 100,
+            },]
+
         const mappedProducts = products.map(product => <li key={product.id}> {product.name} {product.description} </li>)
         return (
-            <div>
-                <BootstrapTable data={products} pagination={true}  options={options}>
-                    <TableHeaderColumn isKey dataField='id'>
-                        ID
-                    </TableHeaderColumn>
-                    <TableHeaderColumn dataField='name'>
-                        Name
-                    </TableHeaderColumn>
-                    <TableHeaderColumn dataField='description'>
-                        Description
-                    </TableHeaderColumn>
-                    <TableHeaderColumn dataField='category_name'>
-                        Category
-                    </TableHeaderColumn>
-                </BootstrapTable>
+            <div className='table-responsive'>
+                <ReactTable className='-highlight' defaultPageSize={10}
+                    data={products}
+                    columns={columns}
+                />
             </div>
         );
     }

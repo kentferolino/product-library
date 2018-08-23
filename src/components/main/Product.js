@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchProducts } from "../../actions/productActions"
+import { fetchProducts, deleteProduct } from "../../actions/productActions"
 
 import ProductTable from "./Product/ProductTable"
 
@@ -10,13 +10,18 @@ class Product extends Component {
         this.props.dispatch(fetchProducts());
     }
 
+    handleDeleteProduct = id => {
+        this.props.dispatch(deleteProduct(id));
+    }
+
+
     render() {
         const { products } = this.props;
         const mappedProducts = products.map(product => <li key={product.id}> {product.name} {product.description} </li>)
         return (
             <div>
                 Products
-                <ProductTable products={products} />
+                <ProductTable products={products} deleteProduct={this.handleDeleteProduct.bind(this)} />
             </div>
         );
     }
