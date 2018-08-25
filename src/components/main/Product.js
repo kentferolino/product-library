@@ -17,7 +17,6 @@ class Product extends Component {
 
     render() {
         const { products } = this.props;
-        const mappedProducts = products.map(product => <li key={product.id}> {product.name} {product.description} </li>)
         return (
             <div>
                 Products Page

@@ -1,12 +1,14 @@
 import axios from "axios";
 
+// Fetching all products
 export function fetchProducts() {
     return function (dispatch) {
         axios.get("http://localhost/PhpAPI/api/product/read.php")
             .then((response) => {
                 dispatch({
                     type: "FETCH_PRODUCTS_FULFILLED",
-                    payload: response.data.records
+                    // The int from API is string. Parse it to int to make the sorting work
+                    payload: response.data.records.map(product=> ({...product, id:parseInt(product.id)}))
                 })
             })
             .catch((err) => {
@@ -18,6 +20,7 @@ export function fetchProducts() {
     }
 }
 
+// Deleting a product
 export function deleteProduct(productID) {
     console.log("Product id is");
     console.log(productID);
