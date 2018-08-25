@@ -23,6 +23,7 @@ const Root = () => (
                 <Switch>
                     {/* Goes to Main Modules */}
                     <Route exact path='/' component={Home} />
+                    <Route path='/home' component={Home} />
                     <Route path='/library' component={ProductLibrary} />
                 </Switch>
             </App>

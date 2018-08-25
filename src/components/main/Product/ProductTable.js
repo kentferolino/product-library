@@ -7,8 +7,12 @@ class ProductTable extends Component {
         this.props.deleteProduct(id);
     }
 
-    render() {
+    toCurrency(numberString) {
+        let number = parseFloat(numberString);
+        return number.toLocaleString('USD');
+    }
 
+    render() {
         const products = this.props.products;
         const columns = [
             {
@@ -28,28 +32,41 @@ class ProductTable extends Component {
                 Header: 'Description',
                 accessor: 'description',
                 headerClassName: 'text-left bg-success',
-                width: 400,
+                width: 350,
             },
             {
                 Header: 'Category',
                 accessor: 'category_name',
                 headerClassName: 'text-left bg-success',
-                width: 250,
+                width: 200,
+            },
+            {
+                Header: 'Price',
+                accessor: 'price',
+                headerClassName: 'text-left bg-success',
+                Cell: props => <span className='number'>{this.toCurrency(props.value)}</span>,
+                width: 100,
             },
             {
                 Header: 'Action',
                 accessor: 'id',
                 headerClassName: 'text-left bg-success',
-                Cell: props => <button onClick={this.deleteProduct.bind(this,props.value)}><i className="fa fa-trash text-danger"></i></button>,
+                Cell: props => <button onClick={this.deleteProduct.bind(this, props.value)}><i className="fa fa-trash text-danger"></i></button>,
                 width: 100,
-            },]
+            },
+        ]
 
-        const mappedProducts = products.map(product => <li key={product.id}> {product.name} {product.description} </li>)
         return (
             <div className='table-responsive'>
                 <ReactTable className='-highlight' defaultPageSize={10}
                     data={products}
                     columns={columns}
+                    defaultSorted={[
+                        {
+                            id: 'id',
+                            desc: false
+                        }
+                    ]}
                 />
             </div>
         );

@@ -8,6 +8,7 @@ import Product from '../components/main/Product';
 class ProductLibrary extends Component {
     render() {
         const paramsHere = this.props;
+        
         return (
             <div>
                 Product Library
@@ -21,11 +22,13 @@ class ProductLibrary extends Component {
                         <Link to={paramsHere.match.url + '/categories'}>Categories</Link>
                     </li>
                 </ul>
-                
                 {/* Goes to product module as default. */}
                 <Route exact path={paramsHere.match.url + '/products'} component={Product}/>
                 {/* Goes to Category module when the above link for category is selected. */}
                 <Route path={paramsHere.match.url + '/categories'} component={Category} />
+
+                {/* Link to Home Page */}
+                <Link to='/home'>Back to home</Link>
             </div>
         );
     }
