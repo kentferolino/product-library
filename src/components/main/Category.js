@@ -13,7 +13,7 @@ class Category extends Component {
         const { categories } = this.props;
         return (
             <div>
-                Category Page
+                <h2>Category Page</h2>
                 <CategoryTable categories={categories}  />
             </div>
         );

@@ -19,7 +19,7 @@ class Product extends Component {
         const { products } = this.props;
         return (
             <div>
-                Products Page
+                <h2>Products Page</h2>
                 <ProductTable products={products} deleteProduct={this.handleDeleteProduct.bind(this)} />
             </div>
         );
