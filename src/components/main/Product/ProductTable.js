@@ -60,7 +60,7 @@ class ProductTable extends Component {
                 Cell: props =>
                     <div>
                         <span style={pointerStyle} className="px-2" onClick={this.deleteProduct.bind(this, props.original.id)}><i className="fa fa-trash text-danger"></i></span>
-                        <Link to={'/library/products/' + props.original.id}><span ><i className="fa fa-eye text-primary px-2"></i></span></Link>
+                        <Link to={'/library/products/view/' + props.original.id}><span ><i className="fa fa-eye text-primary px-2"></i></span></Link>
                     </div>
             },
         ]

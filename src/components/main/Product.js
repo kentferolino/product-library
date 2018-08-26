@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchProducts, deleteProduct } from "../../actions/productActions"
 
+import { Link } from 'react-router-dom'
+import { fetchProducts, deleteProduct } from "../../actions/productActions"
 import ProductTable from "./Product/ProductTable"
 
 class Product extends Component {
@@ -20,6 +21,7 @@ class Product extends Component {
         return (
             <div>
                 <h2>Products Page</h2>
+                <Link to={'/library/products/create'}>Create Product</Link>
                 <ProductTable products={products} deleteProduct={this.handleDeleteProduct.bind(this)} />
             </div>
         );

@@ -8,7 +8,7 @@ export function fetchProducts() {
                 dispatch({
                     type: "FETCH_PRODUCTS_FULFILLED",
                     // The int from API is string. Parse it to int to make the sorting work
-                    payload: response.data.records.map(product=> ({...product, id:parseInt(product.id)}))
+                    payload: response.data.records.map(product => ({ ...product, id: parseInt(product.id) }))
                 })
             })
             .catch((err) => {
@@ -41,24 +41,47 @@ export function fetchOneProduct(productId) {
 }
 
 // Deleting a product
-export function deleteProduct(productID) {
-    console.log("Product id is");
-    console.log(productID);
-    var data = {'id': productID};;
+export function createProduct(product) {
+    var data = {
+        'name': product.name,
+        'description': product.description,
+        'price': product.price,
+        'category_id': parseInt(product.category_id)
+    };
     var headers = {
         'Content-Type': 'application/json',
     }
     return function (dispatch) {
-        axios.post("http://localhost/PhpAPI/api/product/delete.php",data,headers)
-        .then((response) => {
-            dispatch(fetchProducts())
-            dispatch({ type: "DELETE_PRODUCT_FULFILLED", })
-        })
-        .catch((err) => {
-            dispatch({
-                type: "DELETE_PRODUCT_REJECTED",
-                payload: err
-            });
-        })
+        axios.post("http://localhost/PhpAPI/api/product/create.php", data, headers)
+            .then((response) => {
+                dispatch({ type: "CREATE_PRODUCT_FULFILLED", })
+            })
+            .catch((err) => {
+                dispatch({
+                    type: "CREATE_PRODUCT_REJECTED",
+                    payload: err
+                });
+            })
+    }
+}
+
+// Deleting a product
+export function deleteProduct(productID) {
+    var data = { 'id': productID };;
+    var headers = {
+        'Content-Type': 'application/json',
+    }
+    return function (dispatch) {
+        axios.post("http://localhost/PhpAPI/api/product/delete.php", data, headers)
+            .then((response) => {
+                dispatch(fetchProducts())
+                dispatch({ type: "DELETE_PRODUCT_FULFILLED", })
+            })
+            .catch((err) => {
+                dispatch({
+                    type: "DELETE_PRODUCT_REJECTED",
+                    payload: err
+                });
+            })
     }
 }
