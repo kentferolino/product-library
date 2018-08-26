@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom'
-import { Link } from 'react-router-dom'
 
+import { Link } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import Category from '../components/main/Category';
 import Product from '../components/main/Product';
+import ViewProduct from '../components/main/Product/ViewProduct';
 
 class ProductLibrary extends Component {
     render() {
         const paramsHere = this.props;
-        
+        console.log(paramsHere.match.url);
         return (
             <div>
                 Product Library
@@ -24,11 +25,12 @@ class ProductLibrary extends Component {
                 </ul>
                 {/* Goes to product module as default. */}
                 <Route exact path={paramsHere.match.url + '/products'} component={Product}/>
+                {/* Goes to view product. */}
+                <Route path={paramsHere.match.url + '/products/:id'} component={ViewProduct}/>
                 {/* Goes to Category module when the above link for category is selected. */}
                 <Route path={paramsHere.match.url + '/categories'} component={Category} />
 
-                {/* Link to Home Page */}
-                <Link to='/home'>Back to home</Link>
+                
             </div>
         );
     }

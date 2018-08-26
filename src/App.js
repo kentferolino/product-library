@@ -9,7 +9,7 @@ class App extends Component {
     const constainerStyle = { minHeight: "100%", height: "100%" };
     return (
       <div className="content-wrapper">
-        {/* Header of the App */}
+        {/* Header of the App. */}
         <Header location={location} />
         <div className="container" style={constainerStyle}>
           <div className="row">

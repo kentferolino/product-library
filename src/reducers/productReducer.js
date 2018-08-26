@@ -19,6 +19,15 @@ export default function reducer(
         case "FETCH_PRODUCTS_FULFILLED": {
             return {...state, fetching: false, fetched: true, products: action.payload}
         }
+        case "FETCH_ONE_PRODUCT": {
+            return {...state, fetching: true}
+        }
+        case "FETCH_ONE_PRODUCT_REJECTED": {
+            return {...state, fetching: false, error: action.payload}
+        }
+        case "FETCH_ONE_PRODUCT_FULFILLED": {
+            return {...state, fetching: false, fetched: true, product: action.payload}
+        }
         case "DELETE_PRODUCT": {
             return {...state, deleting: true}
         }

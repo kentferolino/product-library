@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
-import ReactTable from "react-table";
+
+import { Link } from 'react-router-dom'
+import { Route } from 'react-router-dom'
+import ReactTable from 'react-table';
+import ViewProduct from './ViewProduct';
 
 class ProductTable extends Component {
 
@@ -14,6 +18,8 @@ class ProductTable extends Component {
 
     render() {
         const products = this.props.products;
+        const pointerStyle = { cursor: 'pointer' }
+        
         const columns = [
             {
                 Header: '#',
@@ -49,12 +55,16 @@ class ProductTable extends Component {
             },
             {
                 Header: 'Action',
-                accessor: 'id',
+                accessor: 'original',
                 headerClassName: 'text-left bg-success',
-                Cell: props => <button onClick={this.deleteProduct.bind(this, props.value)}><i className="fa fa-trash text-danger"></i></button>,
-                width: 100,
+                Cell: props =>
+                    <div>
+                        <span style={pointerStyle} className="px-2" onClick={this.deleteProduct.bind(this, props.original.id)}><i className="fa fa-trash text-danger"></i></span>
+                        <Link to={'/library/products/' + props.original.id}><span ><i className="fa fa-eye text-primary px-2"></i></span></Link>
+                    </div>
             },
         ]
+
 
         return (
             <div className='table-responsive'>
@@ -68,6 +78,7 @@ class ProductTable extends Component {
                         }
                     ]}
                 />
+                <Route path='/library/products/item' component={ViewProduct} />
             </div>
         );
     }

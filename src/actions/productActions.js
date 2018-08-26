@@ -20,6 +20,26 @@ export function fetchProducts() {
     }
 }
 
+// Fetching one product
+export function fetchOneProduct(productId) {
+    return function (dispatch) {
+        axios.get("http://localhost/PhpAPI/api/product/read_one.php?id=" + productId)
+            .then((response) => {
+                dispatch({
+                    type: "FETCH_ONE_PRODUCT_FULFILLED",
+                    // The int from API is string. Parse it to int to make the sorting work
+                    payload: response.data
+                })
+            })
+            .catch((err) => {
+                dispatch({
+                    type: "FETCH_ONE_PRODUCT_REJECTED",
+                    payload: err
+                });
+            })
+    }
+}
+
 // Deleting a product
 export function deleteProduct(productID) {
     console.log("Product id is");
