@@ -1,41 +1,50 @@
 export default function reducer(
-    state = { 
+    state = {
         products: [],
-        fetching: false, 
-        fetched: false, 
+        fetching: false,
+        fetched: false,
         deleting: false,
         deleted: false,
         error: null
-    }, action){
+    }, action) {
 
     // See all action types in product actions
-    switch(action.type){
+    switch (action.type) {
         case "FETCH_PRODUCTS": {
-            return {...state, fetching: true}
+            return { ...state, fetching: true }
         }
         case "FETCH_PRODUCTS_REJECTED": {
-            return {...state, fetching: false, error: action.payload}
+            return { ...state, fetching: false, error: action.payload }
         }
         case "FETCH_PRODUCTS_FULFILLED": {
-            return {...state, fetching: false, fetched: true, products: action.payload}
+            return { ...state, fetching: false, fetched: true, products: action.payload }
         }
         case "FETCH_ONE_PRODUCT": {
-            return {...state, fetching: true}
+            return { ...state, fetching: true }
         }
         case "FETCH_ONE_PRODUCT_REJECTED": {
-            return {...state, fetching: false, error: action.payload}
+            return { ...state, fetching: false, error: action.payload }
         }
         case "FETCH_ONE_PRODUCT_FULFILLED": {
-            return {...state, fetching: false, fetched: true, product: action.payload}
+            return { ...state, fetching: false, fetched: true, product: action.payload }
+        }
+        case "CREATE_PRODUCT": {
+            return { ...state, creating: true, created: false }
+        }
+        case "CREATE_PRODUCT_REJECTED": {
+            return { ...state, creating: false, created: false, error: action.payload }
+        }
+        case "CREATE_PRODUCT_FULFILLED": {
+            return { ...state, creating: false, created: true }
         }
         case "DELETE_PRODUCT": {
-            return {...state, deleting: true}
+            return { ...state, deleting: true }
         }
         case "DELETE_PRODUCT_FULFILLED": {
-            return {...state, deleting: false, deleted: true}
+            return { ...state, deleting: false, deleted: true }
         }
         case "DELETE_PRODUCT_REJECTED": {
-            return {...state, deleting: false, deleted: false, error: action.payload}
+            return { ...state, deleting: false, deleted: false, error: action.payload }
         }
         default:
     }
